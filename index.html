@@ -28,13 +28,70 @@ body {
             <iframe width="560" height="315" src="https://www.youtube.com/embed/lCBDRnM72eU?si=ARDiwbaduCUEBQlA&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <p>Update 02-09-2023 21:38 added background color</p>
             <p>Update 03-09-2023 17:28 loaded in to msvsc</p>
-            <p>Update 03-09-2023 17:36 added a html message board <a href="messageboard.html">here</a></p>
-            <p>Update 03-09-2023 17:43 added a back home button plus background to the message board and made a counter <a href="Counter.html"> here </a></p>
+            <p>Update 03-09-2023 17:36 added a html message board messageboard.html</p>
+            <p>Update 03-09-2023 17:43 added a back home button plus background to the message board and made a counter </p>
             <p>Note: maybe add a backend for the message board there is no storage now (it will reset)</p>
             <p>Update 03-09-2023 17:54 did some updates on the board and backgrnd counter</p>
             <p>Update 03-09-2023 18:05 did some work on the counter Note: check for working order</p>
             <p>Update 03-09-2023 18:09 added php to counter make the count stay it refreshed</p>
             <p>Update 03-09-2023 18:16 added visitor count txt file to counter make the count stay it refreshed</p>
             <p>Update 03-09-2023 18:26 reformed counter to google analytics</p>
+            <form id="message-form">
+                <label for="message">Leave a message:</label>
+                <input type="text" id="message" name="message" required>
+                <button type="submit">Post</button>
+            </form>
+        
+            <!-- Message Display Area -->
+            <div id="message-list">
+                <!-- Messages will be displayed here -->
+            </div>
+        
+            <script>
+                // Function to handle message submission
+                function submitMessage(event) {
+                    event.preventDefault();
+                    const messageInput = document.getElementById("message");
+                    const message = messageInput.value;
+                    if (message.trim() === "") return;
+        
+                    // Retrieve existing messages from localStorage or initialize an empty array
+                    const messages = JSON.parse(localStorage.getItem("messages")) || [];
+        
+                    // Add the new message to the array
+                    messages.push(message);
+        
+                    // Store the updated messages array in localStorage
+                    localStorage.setItem("messages", JSON.stringify(messages));
+        
+                    // Display the messages
+                    displayMessages();
+        
+                    // Clear the message input
+                    messageInput.value = "";
+                }
+        
+                // Function to display messages
+                function displayMessages() {
+                    const messageList = document.getElementById("message-list");
+                    messageList.innerHTML = ""; // Clear the message list
+        
+                    // Retrieve messages from localStorage
+                    const messages = JSON.parse(localStorage.getItem("messages")) || [];
+        
+                    // Iterate through the messages and display them
+                    messages.forEach(function (message) {
+                        const messageElement = document.createElement("div");
+                        messageElement.textContent = message;
+                        messageList.appendChild(messageElement);
+                    });
+                }
+        
+                // Initial display of messages when the page loads
+                displayMessages();
+        
+                // Attach submit event listener to the message form
+                document.getElementById("message-form").addEventListener("submit", submitMessage);
+            </script>
         </body>
 </HTML>
