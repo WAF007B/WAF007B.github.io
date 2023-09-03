@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Visitor Counter</title>
-    <style>
-        body {
-          background-image: url('bacon.jpg');
-          background-repeat: no-repeat;
-        }
-                    </style>
+        <Style>
+            body {
+                background-image: url('bacon.jpg');
+                background-repeat: no-repeat;
+            }
+        </style>
 </head>
 <body>
     <h1>Welcome to My Website</h1>
@@ -21,6 +21,9 @@
             let visitorCount = parseInt(visitorCountElement.textContent);
             visitorCount++;
             visitorCountElement.textContent = visitorCount;
+
+            // Update the visitor count in local storage
+            localStorage.setItem("visitorCount", visitorCount.toString());
         }
 
         // Check if the visitor count exists in local storage
