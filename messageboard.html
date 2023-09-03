@@ -32,38 +32,43 @@
             const message = messageInput.value;
             if (message.trim() === "") return;
 
-            // Create a new message element
-            const messageElement = document.createElement("div");
-            messageElement.textContent = message;
+            // Retrieve existing messages from localStorage or initialize an empty array
+            const messages = JSON.parse(localStorage.getItem("messages")) || [];
 
-            // Create a reaction button for the message
-            const reactionButton = document.createElement("button");
-            reactionButton.textContent = "React";
-            reactionButton.addEventListener("click", reactToMessage);
+            // Add the new message to the array
+            messages.push(message);
 
-            // Append the message and reaction button to the message list
-            messageElement.appendChild(reactionButton);
-            document.getElementById("message-list").appendChild(messageElement);
+            // Store the updated messages array in localStorage
+            localStorage.setItem("messages", JSON.stringify(messages));
+
+            // Display the messages
+            displayMessages();
 
             // Clear the message input
             messageInput.value = "";
         }
 
-        // Function to handle reactions
-        function reactToMessage(event) {
-            const reactionButton = event.target;
-            const messageElement = reactionButton.parentElement;
-            const reactions = reactionButton.dataset.reactions || 0;
-            const newReactions = parseInt(reactions) + 1;
+        // Function to display messages
+        function displayMessages() {
+            const messageList = document.getElementById("message-list");
+            messageList.innerHTML = ""; // Clear the message list
 
-            // Update the reaction count and display it
-            reactionButton.textContent = `React (${newReactions})`;
-            reactionButton.dataset.reactions = newReactions;
+            // Retrieve messages from localStorage
+            const messages = JSON.parse(localStorage.getItem("messages")) || [];
+
+            // Iterate through the messages and display them
+            messages.forEach(function (message) {
+                const messageElement = document.createElement("div");
+                messageElement.textContent = message;
+                messageList.appendChild(messageElement);
+            });
         }
+
+        // Initial display of messages when the page loads
+        displayMessages();
 
         // Attach submit event listener to the message form
         document.getElementById("message-form").addEventListener("submit", submitMessage);
     </script>
-    <a href="index.html">Get back to the bacon!</a>
 </body>
 </html>
