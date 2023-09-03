@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visitor Counter</title>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+
+    <p>You are visitor number: <span id="visitor-count">0</span></p>
+
+    <script>
+        // Function to increment the visitor count
+        function incrementVisitorCount() {
+            const visitorCountElement = document.getElementById("visitor-count");
+            let visitorCount = parseInt(visitorCountElement.textContent);
+            visitorCount++;
+            visitorCountElement.textContent = visitorCount;
+        }
+
+        // Check if the visitor count exists in local storage
+        if (localStorage.getItem("visitorCount")) {
+            // If it exists, retrieve and display the count
+            const savedVisitorCount = parseInt(localStorage.getItem("visitorCount"));
+            document.getElementById("visitor-count").textContent = savedVisitorCount;
+        } else {
+            // If it doesn't exist, initialize the count to 1
+            localStorage.setItem("visitorCount", "1");
+            incrementVisitorCount();
+        }
+
+        // Increment the visitor count when a user visits the page
+        incrementVisitorCount();
+    </script>
+</body>
+</html>
