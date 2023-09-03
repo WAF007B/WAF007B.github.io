@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Message Board</title>
+</head>
+<body>
+    <h1>Welcome to the Message Board</h1>
+
+    <!-- Message Form -->
+    <form id="message-form">
+        <label for="message">Leave a message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Post</button>
+    </form>
+
+    <!-- Message Display Area -->
+    <div id="message-list">
+        <!-- Messages will be displayed here -->
+    </div>
+
+    <script>
+        // Function to handle message submission
+        function submitMessage(event) {
+            event.preventDefault();
+            const messageInput = document.getElementById("message");
+            const message = messageInput.value;
+            if (message.trim() === "") return;
+
+            // Create a new message element
+            const messageElement = document.createElement("div");
+            messageElement.textContent = message;
+
+            // Create a reaction button for the message
+            const reactionButton = document.createElement("button");
+            reactionButton.textContent = "React";
+            reactionButton.addEventListener("click", reactToMessage);
+
+            // Append the message and reaction button to the message list
+            messageElement.appendChild(reactionButton);
+            document.getElementById("message-list").appendChild(messageElement);
+
+            // Clear the message input
+            messageInput.value = "";
+        }
+
+        // Function to handle reactions
+        function reactToMessage(event) {
+            const reactionButton = event.target;
+            const messageElement = reactionButton.parentElement;
+            const reactions = reactionButton.dataset.reactions || 0;
+            const newReactions = parseInt(reactions) + 1;
+
+            // Update the reaction count and display it
+            reactionButton.textContent = `React (${newReactions})`;
+            reactionButton.dataset.reactions = newReactions;
+        }
+
+        // Attach submit event listener to the message form
+        document.getElementById("message-form").addEventListener("submit", submitMessage);
+    </script>
+</body>
+</html>
