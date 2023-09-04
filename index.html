@@ -38,74 +38,18 @@ body {
             <p>Update 03-09-2023 18:26 reformed counter to google analytics</p>
             <p>Update 03-09-2023 22:14 integrated message board</p>
             <p>Update 03-09-2023 22:22 het message board functioneerd niet de gegevens moeten naar een backend.</p>
-            <form id="message-form">
-                <label for="message">Don't leave a message (because only you can see it):</label>
-                <input type="text" id="message" name="message" required>
-                <button type="submit">Post</button>
+            <p>Update 04-09-2023 19:01 Cecking out a new form of message board with github gists and a github api key</p>
+            <h1>Message Board</h1>
+    
+            <!-- Form to submit messages -->
+            <form id="messageForm">
+                <input type="text" id="message" placeholder="Enter your message">
+                <button type="button" onclick="sendMessage()">Submit</button>
             </form>
-            
-            <!-- Message Display Area -->
-            <div id="message-list">
-                <!-- Messages will be displayed here -->
-            </div>
-            
-            <script>
-                // Function to handle message submission
-                function submitMessage(event) {
-                    event.preventDefault();
-                    const messageInput = document.getElementById("message");
-                    const message = messageInput.value;
-                    if (message.trim() === "") return;
-            
-                    // Retrieve existing messages from localStorage or initialize an empty array
-                    const messages = JSON.parse(localStorage.getItem("messages")) || [];
-            
-                    // Create a timestamp for the message
-                    const timestamp = new Date().toLocaleString();
-            
-                    // Add the new message with timestamp to the array
-                    messages.push({ message, timestamp });
-            
-                    // Store the updated messages array in localStorage
-                    localStorage.setItem("messages", JSON.stringify(messages));
-            
-                    // Display the messages
-                    displayMessages();
-            
-                    // Clear the message input
-                    messageInput.value = "";
-                }
-            
-                // Function to display messages
-                function displayMessages() {
-                    const messageList = document.getElementById("message-list");
-                    messageList.innerHTML = ""; // Clear the message list
-            
-                    // Retrieve messages from localStorage
-                    const messages = JSON.parse(localStorage.getItem("messages")) || [];
-            
-                    // Iterate through the messages and display them with timestamps
-                    messages.forEach(function (messageObj) {
-                        const messageElement = document.createElement("div");
-                        const messageText = document.createElement("p");
-                        const timestampText = document.createElement("span");
-            
-                        messageText.textContent = messageObj.message;
-                        timestampText.textContent = messageObj.timestamp;
-            
-                        messageElement.appendChild(messageText);
-                        messageElement.appendChild(timestampText);
-            
-                        messageList.appendChild(messageElement);
-                    });
-                }
-            
-                // Initial display of messages when the page loads
-                displayMessages();
-            
-                // Attach submit event listener to the message form
-                document.getElementById("message-form").addEventListener("submit", submitMessage);
-            </script>
-            
+        
+            <!-- Display messages -->
+            <ul id="messageList"></ul>
+        
+            <script src="script.js"></script>
         </body>
 </HTML>
