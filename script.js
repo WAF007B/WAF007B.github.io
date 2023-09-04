@@ -58,7 +58,12 @@ async function sendMessage() {
 async function displayMessages() {
     try {
         // Fetch the Gist content
-        const gistId = 'YOUR_GIST_ID'; // Replace with your Gist ID
+        const gistIds = {
+            '9fec2f7e61d309d91cb7f735e9f53556': 'Message Board Gist',
+            // Add more Gist IDs as needed
+        };
+        
+        const selectedGistId = gistIds['9fec2f7e61d309d91cb7f735e9f53556'];
         const response = await fetch(`https://api.github.com/gists/${gistId}`);
         const data = await response.json();
 
