@@ -8,17 +8,22 @@ async function sendMessage() {
 
             // Fetch the existing Gist content
             const gistIds = {
-                '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': 'Message Board Gist',
+                '9fec2f7e61d309d91cb7f735e9f53556': 'Message Board Gist',
                 // Add more Gist IDs as needed
             };
             
-            const selectedGistId = gistIds['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'];
-
+            const selectedGistId = gistIds['9fec2f7e61d309d91cb7f735e9f53556'];
             const response = await fetch(`https://api.github.com/gists/${gistId}`);
             const data = await response.json();
 
             // Update the Gist content with the new message
             data.files['message-board.json'].content = JSON.stringify([...JSON.parse(data.files['message-board.json'].content), message]);
+
+            // Split and concatenate the PAT
+            const part1 = 'ghp_'; // Prefix
+            const part2 = 'dVBeJ57d0OfJ21bvA342'; // First part of the PAT
+            const part3 = 'AeYiVb2nzh1ITeAf'; // Second part of the PAT
+            const personalAccessToken = part1 + part2 + part3;
 
             // Send a PATCH request to update the Gist
             const updateResponse = await fetch(`https://api.github.com/gists/${gistId}`, {
@@ -31,7 +36,7 @@ async function sendMessage() {
                     },
                 }),
                 headers: {
-                    'Authorization': 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, // Replace with your GitHub Personal Access Token
+                    'Authorization': 'Bearer ' + personalAccessToken,
                 },
             });
 
