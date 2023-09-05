@@ -3,8 +3,12 @@ async function sendMessage() {
     const messageText = document.getElementById('message').value;
     if (messageText.trim() !== '') {
         try {
-            // Create a new message object
-            const message = { text: messageText };
+            // Create a new message object with a timestamp
+            const timestamp = new Date().toLocaleString(); // Get the current date and time
+            const message = {
+                text: messageText,
+                timestamp: timestamp, // Add the timestamp to the message
+            };
 
             // Fetch the existing Gist content
             const gistId = '9fec2f7e61d309d91cb7f735e9f53556';
