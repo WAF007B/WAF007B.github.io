@@ -5,8 +5,10 @@ async function sendMessage() {
         try {
             // Create a new message object with a timestamp
             const timestamp = new Date().toLocaleString(); // Get the current date and time
-            const message = `${timestamp}: ${messageText}`;
-
+            const message = {
+                text: messageText,
+                timestamp: timestamp, // Add the timestamp to the message
+            };
             // Fetch the existing Gist content
             const gistId = '9fec2f7e61d309d91cb7f735e9f53556';
             const response = await fetch(`https://api.github.com/gists/${gistId}`);
