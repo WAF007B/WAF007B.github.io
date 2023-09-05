@@ -7,12 +7,9 @@ async function sendMessage() {
             const message = { text: messageText };
 
             // Fetch the existing Gist content
-            const gistIds = {
-                '9fec2f7e61d309d91cb7f735e9f53556': 'MSGBRDGST',
-                // Add more Gist IDs as needed
-            };
+            const gistIds = {'9fec2f7e61d309d91cb7f735e9f53556'};
             
-            const gistId = gistIds['MSGBRDGST'];
+            const gistId = gistIds['9fec2f7e61d309d91cb7f735e9f53556'];
             const response = await fetch(`https://api.github.com/gists/${gistId}`);
             const data = await response.json();
 
@@ -58,12 +55,9 @@ async function sendMessage() {
 async function displayMessages() {
     try {
         // Fetch the Gist content
-        const gistIds = {
-            '9fec2f7e61d309d91cb7f735e9f53556': 'MSGBRDGST',
-            // Add more Gist IDs as needed
-        };
+        const gistIds = {'9fec2f7e61d309d91cb7f735e9f53556'};
         
-        const gistId = gistIds['MSGBRDGST'];
+        const gistId = gistIds['9fec2f7e61d309d91cb7f735e9f53556'];
         const response = await fetch(`https://api.github.com/gists/${gistId}`);
         const data = await response.json();
 
