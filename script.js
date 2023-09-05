@@ -8,7 +8,7 @@ async function sendMessage() {
 
             // Fetch the existing Gist content
             const gistIds = {
-                '9fec2f7e61d309d91cb7f735e9f53556': MSGBRDGST,
+                '9fec2f7e61d309d91cb7f735e9f53556': 'MSGBRDGST',
                 // Add more Gist IDs as needed
             };
             
@@ -59,7 +59,7 @@ async function displayMessages() {
     try {
         // Fetch the Gist content
         const gistIds = {
-            '9fec2f7e61d309d91cb7f735e9f53556': MSGBRDGST,
+            '9fec2f7e61d309d91cb7f735e9f53556': 'MSGBRDGST',
             // Add more Gist IDs as needed
         };
         
