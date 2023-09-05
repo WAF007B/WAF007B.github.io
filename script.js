@@ -5,10 +5,7 @@ async function sendMessage() {
         try {
             // Create a new message object with a timestamp
             const timestamp = new Date().toLocaleString(); // Get the current date and time
-            const message = {
-                text: messageText,
-                timestamp: timestamp, // Add the timestamp to the message
-            };
+            const message = `${timestamp}: ${messageText}`;
 
             // Fetch the existing Gist content
             const gistId = '9fec2f7e61d309d91cb7f735e9f53556';
@@ -68,7 +65,7 @@ async function displayMessages() {
 
         messages.forEach((message) => {
             const li = document.createElement('li');
-            li.innerText = message.text;
+            li.innerText = `${message.timestamp}: ${message.text}`;
             messageList.appendChild(li);
         });
     } catch (error) {
