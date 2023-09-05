@@ -12,7 +12,7 @@ async function sendMessage() {
                 // Add more Gist IDs as needed
             };
             
-            const selectedGistId = gistIds['Message Board Gist'];
+            const GistID = gistIds['Message Board Gist'];
             const response = await fetch(`https://api.github.com/gists/${gistId}`);
             const data = await response.json();
 
@@ -63,7 +63,7 @@ async function displayMessages() {
             // Add more Gist IDs as needed
         };
         
-        const selectedGistId = gistIds['Message Board Gist'];
+        const gistID = gistIds['Message Board Gist'];
         const response = await fetch(`https://api.github.com/gists/${gistId}`);
         const data = await response.json();
 
